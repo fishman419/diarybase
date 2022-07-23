@@ -13,13 +13,18 @@ public:
   static Base *Open(const std::string &path);
   static int Close(Base *base);
   uint64_t GetDiaryCount();
+  int Get(uint64_t id, char *buffer);
+  int Put(char *buffer, uint64_t size);
 
 private:
+  int Load();
   Base(DiaryFile *file, const std::string &path);
   ~Base();
 
   std::string path_;
   DiaryFile *file_;
+  uint64_t pos_;
+  DiaryMeta meta_;
   IndexTable table_;
 };
 

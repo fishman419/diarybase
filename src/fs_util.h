@@ -12,6 +12,7 @@ public:
   int Read(char *buffer, uint64_t length);
   int Append(char *buffer, uint64_t length);
   int PRead(uint64_t offset, uint64_t length, char *buffer);
+  int PWrite(uint64_t offset, uint64_t length, char *buffer);
 
 private:
   DiaryFile();

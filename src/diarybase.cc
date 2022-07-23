@@ -3,8 +3,6 @@
 
 using diarybase_internal::Base;
 
-static const uint64_t kMaxBufferSize = 8192;
-
 struct diary_base {
   std::string path;
   Base *base;

@@ -21,4 +21,8 @@ int DiaryFile::PRead(uint64_t offset, uint64_t length, char *buffer) {
   return 0;
 }
 
+int DiaryFile::PWrite(uint64_t offset, uint64_t length, char *buffer) {
+  return 0;
+}
+
 } // namespace diarybase_internal

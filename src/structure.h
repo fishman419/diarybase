@@ -7,6 +7,11 @@ static const uint64_t kDiaryMagic1 = 0x44696172;
 static const uint64_t kDiaryMagic2 = 0x79426173;
 static const uint64_t kTitleLength = 256;
 static const uint64_t kAuthorLength = 128;
+static const uint64_t kMaxBufferSize = 8192;
+
+/* Storage Layout
+ * [Meta][Data1][Data2][Data3]...
+ */
 
 struct DiaryMeta {
   uint64_t diary_magic1;
@@ -16,6 +21,7 @@ struct DiaryMeta {
   char author[kAuthorLength];
   uint64_t create_timestamp;
   uint64_t update_timestamp;
+  uint64_t next_id;
 };
 
 enum DiaryOperation {
