@@ -11,4 +11,7 @@ set(SOURCE
     src/diarybase.cc
     )
 
-add_library(diarybase STATIC ${SOURCE})
+add_library(libdiarybase STATIC ${SOURCE})
+
+add_executable(diary_test src/diary_test.cc)
+target_link_libraries(diary_test libdiarybase)

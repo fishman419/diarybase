@@ -22,7 +22,10 @@ struct diary_items {
   uint64_t size;
 };
 
-struct diary_base *open_diary(char *path);
+struct diary_base *create_diary(const char *path, const char *title,
+                                const char *author);
+
+struct diary_base *open_diary(const char *path);
 
 int close_diary(struct diary_base *db);
 
@@ -37,6 +40,6 @@ int64_t list_diary(struct diary_base *db, uint64_t pos,
 
 int get_diary(struct diary_base *db, uint64_t id, struct diary_items *items);
 
-int put_diary(struct diary_base *db, char *buffer, uint64_t size);
+int put_diary(struct diary_base *db, const char *buffer, uint64_t size);
 
 #endif

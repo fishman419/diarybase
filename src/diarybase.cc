@@ -3,14 +3,24 @@
 
 using diarybase_internal::Base;
 
-static const uint64_t kMaxBufferSize = 8192;
-
 struct diary_base {
   std::string path;
   Base *base;
 };
 
-struct diary_base *open_diary(char *path) {
+struct diary_base *create_diary(const char *path, const char *title,
+                                const char *author) {
+  auto base = Base::Create(path, title, author);
+  if (!base) {
+    return nullptr;
+  }
+  auto db = new diary_base;
+  db->path = path;
+  db->base = base;
+  return db;
+}
+
+struct diary_base *open_diary(const char *path) {
   auto base = Base::Open(path);
   if (!base) {
     return nullptr;
@@ -77,7 +87,7 @@ int get_diary(struct diary_base *db, uint64_t id, struct diary_items *items) {
   return 0;
 }
 
-int put_diary(struct diary_base *db, char *buffer, uint64_t size) {
+int put_diary(struct diary_base *db, const char *buffer, uint64_t size) {
   if (size > kMaxBufferSize) {
     return -1;
   }

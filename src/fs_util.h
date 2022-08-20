@@ -12,12 +12,13 @@ public:
   int Read(char *buffer, uint64_t length);
   int Append(char *buffer, uint64_t length);
   int PRead(uint64_t offset, uint64_t length, char *buffer);
+  int PWrite(uint64_t offset, uint64_t length, char *buffer);
+  int64_t GetPos();
 
 private:
-  DiaryFile();
+  DiaryFile(int fd);
   ~DiaryFile();
   int fd_;
-  uint64_t pos_;
 };
 
 } // namespace diarybase_internal
